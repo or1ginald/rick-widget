@@ -1,0 +1,1 @@
+export { ModalWithAnimation } from './ModalWithAnimation';
