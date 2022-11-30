@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
 import { Paper } from '@mui/material';
-
-import { LazyImage } from '../lazyImage';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import styles from './Card.module.scss';
 
@@ -26,12 +25,7 @@ export const Card: FC<Props> = props => {
       }}
       className={`${styles.card}`}
     >
-      <LazyImage
-        className={`${styles.img} card-img skeleton`}
-        src={character.image}
-        alt=""
-        // placeholderImg={`${process.env.PUBLIC_URL}/placeholder.jpg`}
-      />
+      <LazyLoadImage src={character.image} width={300} height={300} />
       <div className={`${styles.content}`}>
         <div>{character.name}</div>
         <div className="">

@@ -1,0 +1,11 @@
+.splashScene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  img {
+    width: 30vh;
+    height: 30vh;
+    object-fit: contain;
+  }
+}
