@@ -17,7 +17,6 @@ export const Card: FC<Props> = props => {
     <Paper
       elevation={4}
       sx={{
-        minWidth: '300px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
@@ -25,7 +24,12 @@ export const Card: FC<Props> = props => {
       }}
       className={`${styles.card}`}
     >
-      <LazyLoadImage src={character.image} width={300} height={300} />
+      <LazyLoadImage
+        src={character.image}
+        width="100%"
+        height="100%"
+        style={{ objectFit: 'cover' }}
+      />
       <div className={`${styles.content}`}>
         <div>{character.name}</div>
         <div className="">

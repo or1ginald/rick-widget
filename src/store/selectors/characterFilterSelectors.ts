@@ -18,3 +18,6 @@ export const getSpeciesSelector = (
 
 export const getGenderSelector = (state: RootStateType): CharactersFilterType['gender'] =>
   state.charactersFilter.gender;
+
+export const getTypeSelector = (state: RootStateType): CharactersFilterType['type'] =>
+  state.charactersFilter.type;

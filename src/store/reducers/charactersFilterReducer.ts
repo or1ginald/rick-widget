@@ -19,6 +19,7 @@ const charactersFilterSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    resetFilters: () => initialState,
     setStatus: (state, action: PayloadAction<CharactersFilterType['status']>) => {
       state.status = action.payload;
     },
@@ -39,5 +40,5 @@ const charactersFilterSlice = createSlice({
 
 export const charactersFilterReducer = charactersFilterSlice.reducer;
 
-export const { setStatus, setStringTypeFilter, setGender, setPage } =
+export const { setStatus, setStringTypeFilter, setGender, setPage, resetFilters } =
   charactersFilterSlice.actions;

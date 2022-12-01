@@ -11,8 +11,13 @@ import { useAppDispatch } from 'hooks';
 import {
   getCharacters,
   getCharactersSelector,
+  getGenderSelector,
   getNameSelector,
   getPageFilterSelector,
+  getSpeciesSelector,
+  getStatusSelector,
+  getTypeSelector,
+  resetFilters,
   setPage,
   setStringTypeFilter,
 } from 'store';
@@ -24,11 +29,15 @@ export const App: FC = memo(() => {
 
   const currentPage = useSelector(getPageFilterSelector);
   const characterName = useSelector(getNameSelector);
+  const status = useSelector(getStatusSelector);
+  const species = useSelector(getSpeciesSelector);
+  const gender = useSelector(getGenderSelector);
+  const type = useSelector(getTypeSelector);
   const { results, isLoading, info } = useSelector(getCharactersSelector);
 
   useEffect(() => {
     dispatch(getCharacters());
-  }, [currentPage, characterName]);
+  }, [currentPage, characterName, species, status, gender, type]);
 
   const onPageChange = (event: React.ChangeEvent<unknown>, value: number): void => {
     dispatch(setPage(value));
@@ -38,21 +47,17 @@ export const App: FC = memo(() => {
     setIsFilterOpen(prev => !prev);
   };
 
+  const onResetFilterClick = (): void => {
+    dispatch(resetFilters());
+  };
+
   const onCharacterNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     dispatch(setStringTypeFilter({ filter: 'name', newValue: e.target.value }));
   };
 
   return (
     <Box className={styles.container}>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '30px',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <Box className={styles.app}>
         <Grid container gap="10px" justifyContent="center" flexWrap="nowrap">
           <Grid item>
             <TextField
@@ -77,21 +82,33 @@ export const App: FC = memo(() => {
               Filters
             </Button>
           </Grid>
+          <Grid item alignItems="stretch" style={{ display: 'flex' }}>
+            <Button
+              variant="outlined"
+              fullWidth
+              size="large"
+              sx={{ lineHeight: '100%' }}
+              onClick={onResetFilterClick}
+            >
+              Reset
+            </Button>
+          </Grid>
         </Grid>
 
         {isFilterOpen && <Filter />}
 
         {!results.length && <h2>No results matching your search</h2>}
 
-        <Box display="flex" flexWrap="wrap" gap="10px">
+        <Box className={styles.cardsContainer}>
           {results?.map(character => (
-            <Card key={character.id} character={character} />
+            <Card character={character} key={character.id} />
           ))}
         </Box>
 
         {!!results.length && (
           <Pagination
             size="small"
+            // sx={{ alignSelf: 'flex-end' }}
             count={info?.pages ?? 1}
             page={currentPage}
             onChange={onPageChange}
