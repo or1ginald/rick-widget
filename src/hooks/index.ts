@@ -1,2 +1,1 @@
-export { useFetch } from './useFetch';
-export { useInput } from './useInput';
+export { useAppDispatch } from './useAppDisptch';
