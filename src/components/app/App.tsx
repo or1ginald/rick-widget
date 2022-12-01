@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react';
 
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, Grid, TextField } from '@mui/material';
 import Pagination from '@mui/material/Pagination/Pagination';
 import { useSelector } from 'react-redux';
 
@@ -53,25 +53,31 @@ export const App: FC = memo(() => {
           justifyContent: 'center',
         }}
       >
-        <Box display="flex" gap="5px" alignItems="center" justifyContent="center">
-          <TextField
-            inputProps={{
-              autoComplete: 'off',
-            }}
-            type="text"
-            label="Character"
-            value={characterName}
-            onChange={onCharacterNameChange}
-          />
-          <Button
-            variant="outlined"
-            size="large"
-            sx={{ lineHeight: '100%' }}
-            onClick={onFilterClick}
-          >
-            Filters
-          </Button>
-        </Box>
+        <Grid container gap="10px" justifyContent="center" flexWrap="nowrap">
+          <Grid item>
+            <TextField
+              inputProps={{
+                autoComplete: 'off',
+              }}
+              fullWidth
+              type="text"
+              label="Character"
+              value={characterName}
+              onChange={onCharacterNameChange}
+            />
+          </Grid>
+          <Grid item alignItems="stretch" style={{ display: 'flex' }}>
+            <Button
+              variant="outlined"
+              fullWidth
+              size="large"
+              sx={{ lineHeight: '100%' }}
+              onClick={onFilterClick}
+            >
+              Filters
+            </Button>
+          </Grid>
+        </Grid>
 
         {isFilterOpen && <Filter />}
 
