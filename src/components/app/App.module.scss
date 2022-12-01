@@ -9,8 +9,38 @@
   max-width: 1024px;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+//.cardsContainer {
+//  display: grid;
+//  grid-template-columns: repeat(3, 1fr);
+//  gap: 10px;
+//  margin: 0 auto;
+//}
+.cardsContainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 32%));
+  gap: 10px;
+  margin: 0 auto;
+}
+
+
 .error {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 977px) {
+  .cardsContainer {
+    justify-content: center;
+  }
 }
