@@ -21,9 +21,11 @@ const charactersFilterSlice = createSlice({
     },
     resetFilters: () => initialState,
     setStatus: (state, action: PayloadAction<CharactersFilterType['status']>) => {
+      state.page = 1;
       state.status = action.payload;
     },
     setGender: (state, action: PayloadAction<CharactersFilterType['gender']>) => {
+      state.page = 1;
       state.gender = action.payload;
     },
     setStringTypeFilter: (
@@ -33,6 +35,7 @@ const charactersFilterSlice = createSlice({
         newValue: string;
       }>,
     ) => {
+      state.page = 1;
       state[action.payload.filter] = action.payload.newValue;
     },
   },

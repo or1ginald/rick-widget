@@ -27,7 +27,7 @@ export const CharacterInfoModal: FC<Props> = memo(props => {
           <Box>Species: {character?.species}</Box>
           <Box>Origin: {character?.origin.name}</Box>
           <Box>Status: {character?.status}</Box>
-          {character?.type && <Box>Status: {character?.type}</Box>}
+          {character?.type && <Box>Type: {character?.type}</Box>}
         </Box>
       </Box>
     </ModalWithAnimation>
