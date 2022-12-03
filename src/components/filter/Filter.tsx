@@ -9,7 +9,10 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material';
+// import debounce from 'lodash.debounce';
 import { useSelector } from 'react-redux';
+
+import styles from './Filter.module.scss';
 
 import { CharactersFilterType } from 'api';
 import { useAppDispatch } from 'hooks';
@@ -48,8 +51,8 @@ export const Filter = memo(() => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap="10px">
-      <Box display="flex" gap="10px">
+    <Box className={styles.filter}>
+      <Box className={styles.filter__row}>
         <TextField
           variant="outlined"
           label="Species"
@@ -58,7 +61,7 @@ export const Filter = memo(() => {
         />
         <TextField variant="outlined" label="Type" onChange={onTypeChange} value={type} />
       </Box>
-      <Box display="flex" gap="10px">
+      <Box className={styles.filter__row}>
         <FormControl fullWidth>
           <InputLabel id="status-label">Status</InputLabel>
           <Select

@@ -1,12 +1,16 @@
-import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, memo, useCallback, useEffect, useState } from 'react';
 
-import { Box, Button, Grid, TextField } from '@mui/material';
+import Box from '@mui/material/Box/Box';
+import Button from '@mui/material/Button/Button';
+import Grid from '@mui/material/Grid/Grid';
 import Pagination from '@mui/material/Pagination/Pagination';
+import TextField from '@mui/material/TextField/TextField';
 import { useSelector } from 'react-redux';
 
 import styles from './App.module.scss';
 
-import { Card, Filter } from 'components';
+import { Character } from 'api';
+import { CharacterInfoModal, Card, Filter } from 'components';
 import { useAppDispatch } from 'hooks';
 import {
   getCharacters,
@@ -26,6 +30,7 @@ export const App: FC = memo(() => {
   const dispatch = useAppDispatch();
 
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [currentCharacter, setCurrentCharacter] = useState<Character | null>(null);
 
   const currentPage = useSelector(getPageFilterSelector);
   const characterName = useSelector(getNameSelector);
@@ -33,7 +38,7 @@ export const App: FC = memo(() => {
   const species = useSelector(getSpeciesSelector);
   const gender = useSelector(getGenderSelector);
   const type = useSelector(getTypeSelector);
-  const { results, isLoading, info } = useSelector(getCharactersSelector);
+  const { results, info } = useSelector(getCharactersSelector);
 
   useEffect(() => {
     dispatch(getCharacters());
@@ -55,10 +60,18 @@ export const App: FC = memo(() => {
     dispatch(setStringTypeFilter({ filter: 'name', newValue: e.target.value }));
   };
 
+  const onCardClick = useCallback((character: Character): void => {
+    setCurrentCharacter(character);
+  }, []);
+
+  const onModalClose = useCallback((): void => {
+    setCurrentCharacter(null);
+  }, []);
+
   return (
     <Box className={styles.container}>
       <Box className={styles.app}>
-        <Grid container gap="10px" justifyContent="center" flexWrap="nowrap">
+        <Grid container className={styles.controls}>
           <Grid item>
             <TextField
               inputProps={{
@@ -71,23 +84,19 @@ export const App: FC = memo(() => {
               onChange={onCharacterNameChange}
             />
           </Grid>
-          <Grid item alignItems="stretch" style={{ display: 'flex' }}>
+          <Grid item>
             <Button
+              className={styles.controls__button}
               variant="outlined"
-              fullWidth
-              size="large"
-              sx={{ lineHeight: '100%' }}
               onClick={onFilterClick}
             >
               Filters
             </Button>
           </Grid>
-          <Grid item alignItems="stretch" style={{ display: 'flex' }}>
+          <Grid item>
             <Button
               variant="outlined"
-              fullWidth
-              size="large"
-              sx={{ lineHeight: '100%' }}
+              className={styles.controls__button}
               onClick={onResetFilterClick}
             >
               Reset
@@ -101,20 +110,28 @@ export const App: FC = memo(() => {
 
         <Box className={styles.cardsContainer}>
           {results?.map(character => (
-            <Card character={character} key={character.id} />
+            <Card
+              character={character}
+              key={character.id}
+              handleCardClick={onCardClick}
+            />
           ))}
         </Box>
 
         {!!results.length && (
           <Pagination
             size="small"
-            // sx={{ alignSelf: 'flex-end' }}
             count={info?.pages ?? 1}
             page={currentPage}
             onChange={onPageChange}
           />
         )}
       </Box>
+      <CharacterInfoModal
+        isOpen={!!currentCharacter}
+        onClose={onModalClose}
+        character={currentCharacter}
+      />
     </Box>
   );
 });

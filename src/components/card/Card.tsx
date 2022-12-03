@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
-import { Paper } from '@mui/material';
+import Box from '@mui/material/Box/Box';
+import Paper from '@mui/material/Paper/Paper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import styles from './Card.module.scss';
@@ -9,20 +10,29 @@ import { Character } from 'api';
 
 type Props = {
   character: Character;
+  handleCardClick: (character: Character) => void;
 };
 
 export const Card: FC<Props> = props => {
-  const { character } = props;
+  const { character, handleCardClick } = props;
+
+  const onCardClick = (): void => {
+    handleCardClick(character);
+  };
+
+  const onEnterKeyDown = (e: any): void => {
+    if (e.key === 'Enter') {
+      handleCardClick(character);
+    }
+  };
+
   return (
     <Paper
       elevation={4}
-      sx={{
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-      }}
-      className={`${styles.card}`}
+      onClick={onCardClick}
+      className={styles.card}
+      onKeyDown={onEnterKeyDown}
+      tabIndex={0}
     >
       <LazyLoadImage
         src={character.image}
@@ -30,13 +40,9 @@ export const Card: FC<Props> = props => {
         height="100%"
         style={{ objectFit: 'cover' }}
       />
-      <div className={`${styles.content}`}>
-        <div>{character.name}</div>
-        <div className="">
-          <div>Last Location</div>
-          <div>{character.location.name}</div>
-        </div>
-      </div>
+      <Box className={styles.content}>
+        <h3 className={styles.characterName}>{character.name}</h3>
+      </Box>
     </Paper>
   );
 };
