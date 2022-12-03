@@ -18,7 +18,7 @@ export const ModalWithAnimation = memo((props: Props) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    minWidth: 400,
+    minWidth: 300,
     bgcolor: 'background.paper',
     border: '1px solid #000',
     boxShadow: 5,
