@@ -1,7 +1,7 @@
-import { $api, Characters, CharactersFilterType } from 'api';
+import { $api, CharactersResponseType, CharactersFilterType } from 'api';
 
 export const characterAPI = {
   getCharacters(params: CharactersFilterType) {
-    return $api.get<Characters>('character', { params });
+    return $api.get<CharactersResponseType>('character', { params });
   },
 };

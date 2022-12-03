@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getCharacters } from '../middlewares';
 
-import { Characters } from 'api';
+import { CharactersResponseType } from 'api';
 
-export type charactersReducerInitialStateType = Characters & {
+export type charactersReducerInitialStateType = CharactersResponseType & {
   isLoading: boolean;
   errorMessage: string | null;
 };

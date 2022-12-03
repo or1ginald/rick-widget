@@ -1,4 +1,4 @@
-export type Characters = {
+export type CharactersResponseType = {
   info: Info;
   results: Character[];
 };

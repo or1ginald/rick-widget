@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios';
-
 import { createTypedAsyncThunk } from './createTypedAsyncThunk';
 
 import { characterAPI } from 'api';
