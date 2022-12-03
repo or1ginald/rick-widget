@@ -71,13 +71,12 @@ export const App: FC = memo(() => {
   return (
     <Box className={styles.container}>
       <Box className={styles.app}>
-        <Grid container className={styles.controls}>
+        <Box className={styles.controls}>
           <Grid item>
             <TextField
               inputProps={{
                 autoComplete: 'off',
               }}
-              fullWidth
               type="text"
               label="Character"
               value={characterName}
@@ -102,7 +101,7 @@ export const App: FC = memo(() => {
               Reset
             </Button>
           </Grid>
-        </Grid>
+        </Box>
 
         {isFilterOpen && <Filter />}
 
