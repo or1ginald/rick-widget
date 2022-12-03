@@ -1,7 +1,7 @@
 {
-  "name": "rick-and-morty",
+  "name": "rick-widget",
   "version": "0.1.0",
-  "homepage": "https://or1ginald.github.io/rick-and-morty",
+  "homepage": "https://or1ginald.github.io/rick-widget",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.9.3",
