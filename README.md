@@ -1,4 +1,6 @@
-Запуск проекта:  
+### Project start instructions  
+
+---
 #### Method 1(Docker).  
 1) Go through the terminal to the project folder  
 2) Build image
@@ -11,6 +13,7 @@ docker run -e REACT_APP_API_BASE_URL=https://rickandmortyapi.com/api/ -p 3000:80
 ```
 4) Open http://localhost:3000/
 
+---
 #### Method 2 (Node.js).  
 1) Download node_modules  
 ```
