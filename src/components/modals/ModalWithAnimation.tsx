@@ -14,6 +14,7 @@ export const ModalWithAnimation = memo((props: Props) => {
   const { fadeIn, isOpen, onClose, children } = props;
   const style = {
     position: 'absolute' as 'absolute',
+    outline: 'none',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -22,7 +23,7 @@ export const ModalWithAnimation = memo((props: Props) => {
     border: '1px solid #000',
     boxShadow: 5,
     borderRadius: 5,
-    p: 4,
+    p: '1em 2em',
   };
   return (
     <Modal open={isOpen} closeAfterTransition onClose={onClose}>
