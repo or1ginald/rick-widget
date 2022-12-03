@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/rick-widget/static/css/main.1fbaa953.css",
-    "main.js": "/rick-widget/static/js/main.0eef3742.js",
+    "main.js": "/rick-widget/static/js/main.205895a3.js",
     "static/media/cucumber.webp": "/rick-widget/static/media/cucumber.75ad51f9e0ff9cc6e0a9.webp",
     "index.html": "/rick-widget/index.html",
     "main.1fbaa953.css.map": "/rick-widget/static/css/main.1fbaa953.css.map",
-    "main.0eef3742.js.map": "/rick-widget/static/js/main.0eef3742.js.map"
+    "main.205895a3.js.map": "/rick-widget/static/js/main.205895a3.js.map"
   },
   "entrypoints": [
     "static/css/main.1fbaa953.css",
-    "static/js/main.0eef3742.js"
+    "static/js/main.205895a3.js"
   ]
 }
