@@ -36,8 +36,8 @@ export const Card: FC<Props> = props => {
     >
       <LazyLoadImage
         src={character.image}
-        width="100%"
-        height="100%"
+        width="315px"
+        height="315px"
         style={{ objectFit: 'cover' }}
       />
       <Box className={styles.content}>
